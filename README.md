@@ -1,2 +1,2 @@
-# unibites
-Description: College Canteen Management System built using Angular, Node.js and MySQL
+# arthub
+Description: Arthub is a web-based digital art gallery platform designed to connect artists and art enthusiasts. The system allows artists to showcase and sell their artwork online while enabling users to browse artworks, place orders, and explore different art categories. The platform also includes an administrative module to manage artists, artworks, categories, and transactions efficiently.
