@@ -1,0 +1,67 @@
+<div class="container" *ngIf="vieworder">
+
+    <div class="header">
+        <h1>Order Details</h1>
+        <div class="order-id">#ORD-{{bookingmaster_id}}</div>
+    </div>
+
+    <!-- CUSTOMER -->
+    <div class="customer-section">
+        <img src="http://localhost:3000/images/{{customer[0].image}}" class="customer-image">
+        <div class="customer-name">{{customer[0].name}}</div>
+        <div class="customer-role">{{customer[0].role}}</div>
+    </div>
+
+    <!-- ORDER INFO -->
+    <div class="order-info">
+        <div class="info-item">
+            <div class="info-label">Order Date</div>
+            <div class="info-value">{{customer[0].bookingdate | date:'dd MMM yyyy'}}</div>
+        </div>
+
+        <div class="info-item">
+            <div class="info-label">Total Amount</div>
+            <div class="info-value amount">₹{{vieworder.totalamount}}</div>
+        </div>
+
+        <div class="info-item">
+            <div class="info-label">Status</div>
+            <div class="info-value">
+                <span class="status">{{customer[0].status}}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOD ITEMS -->
+    <div class="food-items">
+        <h2 class="section-title">Order Items</h2>
+
+        @for(item of orderItems; track item.bookingdetails_id){
+        <div class="food-item">
+            <img src="http://localhost:3000/images/{{item.food_image}}" class="food-image">
+
+            <div class="food-details">
+                <div class="food-name">{{item.food_name}}</div>
+
+                <div class="food-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Quantity:</span>
+                        <span class="quantity">{{item.quantity}}</span>
+                    </div>
+
+                    <div class="meta-item">
+                        <span class="meta-label">Price:</span>
+                        <span class="price">₹{{item.amount}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+        <button class="back-button" [routerLink]="['/adminmaster/customerorder']">Back to Orders</button>
+        <button class="complete-button" (click)="completed()">
+    Completed
+</button>
+
+    </div>
+
+</div>

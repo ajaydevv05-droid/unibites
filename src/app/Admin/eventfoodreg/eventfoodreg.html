@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNIBITES | Food Registration</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="page-title">Event Food Registration</div>
+    <div class="page-subtitle">Add food items with image for your event</div>
+
+    <div class="card">
+
+        <div class="card-header">
+            <h3>Food Details</h3>
+        </div>
+
+        <div class="card-body">
+            <form [formGroup]="foodformgroup" enctype="multipart/form-data">
+
+                <div id="foodContainer">
+
+                    <div class="food-item">
+
+                        <h4>Food Item</h4>
+
+                        <!-- Food Name -->
+                        <label>Food Name</label>
+                        <input type="text"
+                               formControlName="food_name"
+                               placeholder="Enter food name">
+
+                        <small class="text-danger"
+                        *ngIf="foodformgroup.controls['food_name'].errors?.['required'] && savestatus">
+                        Food name is required
+                        </small>
+
+                        <!-- Food Image -->
+                        <label>Food Image</label>
+                        <label class="image-upload">
+                            <span>Click to upload image</span>
+                            <input type="file"
+                                   formControlName="food_image"
+                                   accept="image/*"
+                                   (change)="selectFile($event)">
+                        </label>
+
+                        <small class="text-danger"
+                        *ngIf="foodformgroup.controls['food_image'].errors?.['required'] && savestatus">
+                        Please upload a food image
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+
+        <div class="card-footer">
+            <button type="submit"
+                    class="submit-btn"
+                    (click)="Onsubmit()">
+                Save Food Items
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Food Items Table -->
+<div class="card" style="margin-top: 30px;width:1000px;margin-left:140px;">
+
+    <div class="card-header">
+        <h3>Registered Food Items</h3>
+    </div>
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+            <table class="food-table">
+
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Food Name</th>
+                        <th>Food Image</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @if(foodarray.length == 0) {
+                    <tr>
+                        <td colspan="4" class="no-data">
+                            No food items added yet.
+                        </td>
+                    </tr>
+                    }
+
+                    @else{
+
+                    @for(data of foodarray; track data; let i = $index) {
+
+                    <tr>
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ data.food_name }}</td>
+
+                        <td>
+                            <img src="http://localhost:3000/images/{{data.food_image}}"
+                                 alt="Food Image"
+                                 class="table-img">
+                        </td>
+
+                        <td>
+                            <button class="delete-btn"
+                                    (click)="deleteFood(data.eventfood_id)">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+
+                    }
+
+                    }
+
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

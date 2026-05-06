@@ -1,0 +1,121 @@
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <h1>💳 Payment Dashboard</h1>
+        <p>Admin Panel - Monitor and manage all payments</p>
+    </div>
+
+    <!-- DATE FILTER -->
+    <div class="filter-section">
+
+        <label>From:</label>
+        <input type="date" [(ngModel)]="fromDate">
+
+        <label>To:</label>
+        <input type="date" [(ngModel)]="toDate">
+
+        <button class="action-btn view-btn" (click)="filterPayments()">
+            Filter
+        </button>
+
+        <button class="action-btn download-btn" (click)="reset()">
+            Reset
+        </button>
+
+    </div>
+
+    <!-- DATE VALIDATION MESSAGE -->
+    <div *ngIf="dateError" class="text-danger" style="margin-top:5px;">
+        {{dateError}}
+    </div>
+
+    <!-- TYPE FILTER -->
+    <div class="type-filter">
+        <button class="action-btn" (click)="filterType('all')">All</button>
+        <button class="action-btn" (click)="filterType('Staff')">Staff</button>
+        <button class="action-btn" (click)="filterType('Student')">Student</button>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h3>Total Collected</h3>
+            <div class="amount">₹{{total}}</div>
+            <div class="count">{{payments.length}} payments</div>
+        </div>
+
+        <div class="stat-card">
+            <h3>Staff Payments</h3>
+            <div class="amount">₹{{staffpayment}}</div>
+        </div>
+
+        <div class="stat-card">
+            <h3>Student Payments</h3>
+            <div class="amount">₹{{studentpayment}}</div>
+        </div>
+
+    </div>
+
+    <!-- Payment Table -->
+    <div class="payment-table">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Email</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr *ngFor="let p of payments">
+
+                    <td>{{p.payment_id}}</td>
+
+                    <td>{{p.student_name}}</td>
+
+                    <td>
+                        <span class="user-type"
+                              [ngClass]="p.role=='staff' ? 'staff' : 'student'">
+                            {{p.role | uppercase}}
+                        </span>
+                    </td>
+
+                    <td>{{p.student_email}}</td>
+
+                    <td>₹{{p.amount}}</td>
+
+                    <td>{{p.paymentdate | date:'yyyy-MM-dd'}}</td>
+
+                    <td>
+                        <span class="status"
+                              [ngClass]="{
+                                  'paid':p.status=='Paid',
+                                  'pending':p.status=='Pending',
+                                  'overdue':p.status=='Overdue'
+                              }">
+                            {{p.status}}
+                        </span>
+                    </td>
+
+                    <td></td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

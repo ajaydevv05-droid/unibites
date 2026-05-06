@@ -1,0 +1,41 @@
+<section class="food-area section-padding">
+  <div class="container">
+    <div class="row">
+
+      @for (data of foodarray; track data.food_id) {
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="single-food">
+
+          <!-- IMAGE AS BUTTON -->
+          <div class="food-img clickable"
+               [routerLink]="['/staffmaster/singlefood', data.food_id]">
+
+            <img
+              src="http://localhost:3000/images/{{ data.food_image }}"
+              alt="{{ data.food_name }}"
+            >
+          </div>
+
+          <div class="food-content">
+
+            <!-- NAME -->
+            <div class="d-flex justify-content-between align-items-center">
+              <h5>{{ data.food_name }}</h5>
+            </div>
+
+            <!-- STATUS -->
+            <span class="status"
+                  [class.available]="data.status === 'Available'"
+                  [class.unavailable]="data.status !== 'Available'">
+              {{ data.status }}
+            </span>
+
+          </div>
+
+        </div>
+      </div>
+      }
+
+    </div>
+  </div>
+</section>

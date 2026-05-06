@@ -1,0 +1,162 @@
+```html
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>📊 Payment Report</h1>
+    <p>Admin Panel - Date Wise & Excel Report</p>
+  </div>
+
+  <!-- DATE FILTER -->
+  <form [formGroup]="reportForm">
+
+    <div class="filter-section">
+
+      <!-- START DATE -->
+      <div class="date-field">
+        <label>From:</label>
+
+        <input type="date"
+               formControlName="startdate">
+
+        <small class="error"
+        *ngIf="reportForm.controls['startdate'].errors?.['required'] && reportForm.touched">
+          Please select start date
+        </small>
+      </div>
+
+
+      <!-- END DATE -->
+      <div class="date-field">
+        <label>To:</label>
+
+        <input type="date"
+               formControlName="enddate"
+               [min]="reportForm.controls['startdate'].value">
+
+        <small class="error"
+        *ngIf="reportForm.controls['enddate'].errors?.['required'] && reportForm.touched">
+          Please select end date
+        </small>
+
+        <small class="error"
+        *ngIf="reportForm.value.startdate && reportForm.value.enddate 
+        && reportForm.value.enddate < reportForm.value.startdate">
+          End date cannot be earlier than start date
+        </small>
+      </div>
+
+
+      <!-- BUTTONS -->
+      <button type="button"
+              class="action-btn view-btn"
+              (click)="onSubmit()">
+        Generate
+      </button>
+
+      <button type="button"
+              class="action-btn download-btn"
+              (click)="reset()">
+        Reset
+      </button>
+
+      <button type="button"
+              class="action-btn excel-btn"
+              (click)="exportToExcel()"
+              [disabled]="reportData.length === 0">
+        Download Excel
+      </button>
+
+    </div>
+
+  </form>
+
+
+  <!-- SUMMARY CARDS -->
+  <div class="stats-grid" *ngIf="reportData.length > 0">
+
+    <div class="stat-card">
+      <h3>Total Collection</h3>
+      <div class="amount">₹{{totalAmount}}</div>
+      <div class="count">{{reportData.length}} payments</div>
+    </div>
+
+    <div class="stat-card">
+      <h3>Staff Payments</h3>
+      <div class="amount">₹{{staffTotal}}</div>
+      <div class="count">{{staffCount}} payments</div>
+    </div>
+
+    <div class="stat-card">
+      <h3>Student Payments</h3>
+      <div class="amount">₹{{studentTotal}}</div>
+      <div class="count">{{studentCount}} payments</div>
+    </div>
+
+  </div>
+
+
+  <!-- PAYMENT TABLE -->
+  <div class="payment-table"
+       *ngIf="reportData.length > 0"
+       #TABLE>
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Email</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let p of reportData">
+
+          <td>{{p.payment_id}}</td>
+          <td>{{p.customer_name}}</td>
+
+          <td>{{p.customer_type}}</td>
+
+          <td>{{p.customer_email}}</td>
+          <td>₹{{p.amount}}</td>
+          <td>{{p.paymentdate | date:'yyyy-MM-dd'}}</td>
+
+          <td>
+            <span class="status"
+              [ngClass]="{
+                'paid': p.status=='Paid',
+                'pending': p.status=='Pending',
+                'overdue': p.status=='Overdue'
+              }">
+
+              {{p.status}}
+
+            </span>
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+  <!-- NO DATA -->
+  <div *ngIf="reportGenerated && reportData.length === 0"
+       class="no-data">
+
+    No payments found for selected date range.
+
+  </div>
+
+</div>
+```

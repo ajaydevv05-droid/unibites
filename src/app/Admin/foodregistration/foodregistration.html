@@ -1,0 +1,152 @@
+<div class="container food-wrapper">
+  <div class="page-inner">
+
+    <div class="page-header big-header">
+      <h3>🍽 Food Registration</h3>
+      <p class="subtitle">Add new food items to your system</p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-md-12">
+        <div class="card food-card large-card">
+
+          <div class="card-header">
+            <div class="card-title">Food Registration Form</div>
+          </div>
+
+          <div class="card-body big-body">
+
+            <form [formGroup]="foodformgroup" enctype="multipart/form-data">
+
+              <div class="row g-4">
+
+                <!-- Category -->
+                <div class="col-md-6">
+                  <label>Select Category</label>
+
+                  <select class="form-control custom-input large-input"
+                          formControlName="category_id">
+                    <option value="">Select Category</option>
+
+                    @for(data of categoryarray; track data;) {
+                      <option value="{{data.category_id}}">
+                        {{data.category_name}}
+                      </option>
+                    }
+                  </select>
+
+                  <small class="text-danger"
+                  *ngIf="foodformgroup.controls['category_id'].errors?.['required'] && savestatus">
+                    Please select a category
+                  </small>
+                </div>
+
+
+                <!-- Food Name -->
+                <div class="col-md-6">
+                  <label>Food Name</label>
+
+                  <input type="text"
+                         class="form-control custom-input large-input"
+                         placeholder="Enter food name"
+                         formControlName="foodName">
+
+                  <small class="text-danger"
+                  *ngIf="foodformgroup.controls['foodName'].errors?.['required'] && savestatus">
+                    Food name is required
+                  </small>
+                </div>
+
+
+                <!-- Photo -->
+                <div class="col-md-6">
+                  <label>Photo</label>
+
+                  <div class="file-upload large-file">
+                    <input type="file"
+                           formControlName="foodImage"
+                           (change)="selectFile($event)">
+                  </div>
+
+                  <small class="text-danger"
+                  *ngIf="foodformgroup.controls['foodImage'].errors?.['required'] && savestatus">
+                    Please upload a food image
+                  </small>
+                </div>
+
+
+                <!-- Amount -->
+                <div class="col-md-6">
+                  <label>Amount</label>
+
+                  <input type="number"
+                         class="form-control custom-input large-input"
+                         placeholder="Enter amount"
+                         formControlName="amount">
+
+                  <small class="text-danger"
+                  *ngIf="foodformgroup.controls['amount'].errors?.['required'] && savestatus">
+                    Amount is required
+                  </small>
+                </div>
+
+
+                <!-- Description -->
+                <div class="col-md-6">
+                  <label>Description</label>
+
+                  <input type="text"
+                         class="form-control custom-input large-input"
+                         placeholder="Enter description"
+                         formControlName="description">
+
+                  <small class="text-danger"
+                  *ngIf="foodformgroup.controls['description'].errors?.['required'] && savestatus">
+                    Description is required
+                  </small>
+                </div>
+
+
+                <!-- Quantity -->
+                <div class="col-md-6">
+                  <label>Quantity</label>
+
+                  <input type="number"
+                         class="form-control custom-input large-input"
+                         placeholder="Enter quantity"
+                         formControlName="quantity">
+
+                  <small class="text-danger"
+                  *ngIf="foodformgroup.controls['quantity'].errors?.['required'] && savestatus">
+                    Quantity is required
+                  </small>
+                </div>
+
+              </div>
+
+              <!-- Buttons -->
+              <div class="form-actions big-buttons">
+
+                <button type="button"
+                        class="btn btn-submit large-btn"
+                        (click)="Onsubmit()">
+                  Submit
+                </button>
+
+                <button type="reset"
+                        class="btn btn-cancel large-btn">
+                  Cancel
+                </button>
+
+              </div>
+
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,108 @@
+<div class="feedback-wrapper">
+
+  <!-- Header Section -->
+  <div class="feedback-header">
+    <div>
+      <h2>Customer Feedback</h2>
+      <p class="subtitle">Monitor and manage customer reviews</p>
+    </div>
+
+    <!-- <button class="btn btn-primary export-btn">
+      <i class="bi bi-download"></i> Export
+    </button> -->
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="summary-section">
+
+    <div class="summary-card total">
+      <p>Total Feedback</p>
+      <h3>{{ total_feedback }}</h3>
+    </div>
+
+    <div class="summary-card positive">
+      <p>Positive</p>
+      <h3>{{ positive_count }}</h3>
+    </div>
+
+    <div class="summary-card negative">
+      <p>Negative</p>
+      <h3>{{ negative_count }}</h3>
+    </div>
+
+    <div class="summary-card average">
+      <p>Average Rating</p>
+      <h3>{{ average_rating }} ★</h3>
+    </div>
+
+  </div>
+
+  <!-- Feedback Table -->
+  <div class="table-container">
+
+    <table class="table feedback-table">
+
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Customer</th>
+          <th>Date</th>
+          <th>Food</th>
+          <th>Rating</th>
+          <th>Feedback</th>
+          <!-- <th>Action</th> -->
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let f of feedbackarray; let i = index">
+
+          <td>{{ i + 1 }}</td>
+
+          <!-- Customer -->
+          <td class="customer-cell">
+            <img src="http://localhost:3000/images/{{f.customer_photo}}">
+            <div>
+              <strong>{{ f.customer_name }}</strong>
+              <small>({{ f.customer_type }})</small>
+            </div>
+          </td>
+
+          <td>{{ f.feedback_date | date:'dd MMM yyyy' }}</td>
+
+          <td>{{ f.food_name }}</td>
+
+          <!-- Rating -->
+          <td>
+            <span class="rating-badge">
+              {{ f.rating }} ★
+            </span>
+          </td>
+
+          <td class="feedback-text">
+            {{ f.description }}
+          </td>
+
+          <!-- Action -->
+          <!-- <td>
+            <button class="btn btn-light action-btn">
+              <i class="bi bi-eye"></i>
+            </button>
+          </td> -->
+
+        </tr>
+
+        <tr *ngIf="feedbackarray.length === 0">
+          <td colspan="7" class="text-center empty-text">
+            No feedback available
+          </td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

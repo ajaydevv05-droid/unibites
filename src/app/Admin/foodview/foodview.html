@@ -1,0 +1,96 @@
+<div class="container mt-5">
+  <div class="page-card" style="margin-top: 94px;">
+
+    <!-- HEADER -->
+    <div class="page-header">
+      <div>
+        <h2>🍽 Food Details</h2>
+        <p>Manage all food details in the system</p>
+      </div>
+
+      <div class="food-count">
+        Total Items: <span>{{ foodarray?.length }}</span>
+      </div>
+    </div>
+
+    <!-- CATEGORY FILTER -->
+    <div class="filter-card mb-4">
+      <form [formGroup]="viewgroup">
+        <label class="form-label fw-semibold">Filter by Category</label>
+        <select class="form-select custom-select"
+          (change)="onchange($event)"
+          formControlName="categoryFilter">
+          <option value="">All Categories</option>
+
+          @for(cat of categoryArray; track cat) {
+            <option [value]="cat.category_id">
+              {{ cat.category_name }}
+            </option>
+          }
+        </select>
+      </form>
+    </div>
+
+    <!-- FOOD TABLE -->
+    <div class="table-responsive">
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Food Name</th>
+            <th>Photo</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Quantity</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for(data of foodarray; track data; let i = $index) {
+          <tr>
+            <td><b>{{ i + 1 }}</b></td>
+            <td class="fw-semibold">{{ data.food_name }}</td>
+
+            <td>
+              <img
+                src="http://localhost:3000/images/{{data.food_image}}"
+                class="food-img">
+            </td>
+
+            <td class="text-success fw-bold">₹{{ data.amount }}</td>
+            <td class="description">{{ data.description }}</td>
+
+            <td>
+              <span class="status-badge"
+                [ngClass]="{
+                  'available': data.status === 'Available',
+                  'unavailable': data.status !== 'Available'
+                }">
+                {{ data.status }}
+              </span>
+            </td>
+
+            <td>
+              <span class="quantity-badge">{{ data.quantity }}</span>
+            </td>
+
+            <td>
+              <div class="action-btns">
+                  <button
+                    class="delete-btn"
+                    (click)="fooddelete(data.food_id)">
+                    🗑 Delete
+                    </button>
+
+              </div>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

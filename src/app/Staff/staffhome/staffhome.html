@@ -1,0 +1,670 @@
+<!-- Banner Area Starts -->
+
+<section class="banner-area text-center">
+  <div class="container">
+
+```
+<!-- STATIC TEXT -->
+<div class="row">
+  <div class="col-lg-12">
+    <h6 class="banner-subtitle">
+      the most interesting food in the world
+    </h6>
+
+    <h1 class="banner-title">
+      Discover the <span class="prime-color">flavors</span><br>
+      <span class="style-change">
+        of <span class="prime-color">UNIBITES</span>
+      </span>
+    </h1>
+  </div>
+</div>
+
+<!-- EVENT CAROUSEL -->
+<div id="eventCarousel"
+     class="carousel slide mt-5"
+     data-bs-ride="carousel"
+     data-bs-interval="5000"
+     data-bs-pause="false">
+
+  <!-- Indicators -->
+  <div class="carousel-indicators">
+    <button *ngFor="let event of eventArray; let i=index"
+            type="button"
+            data-bs-target="#eventCarousel"
+            [attr.data-bs-slide-to]="i"
+            [class.active]="i===0">
+    </button>
+  </div>
+
+  <div class="carousel-inner">
+
+    <!-- LOOP EVENTS -->
+    <ng-container *ngFor="let event of eventArray; let i = index">
+
+      <!-- HIDE EXPIRED EVENTS -->
+      <div *ngIf="!isPollClosed(event.event_date)"
+           class="carousel-item"
+           [class.active]="i === 0">
+
+        <div class="event-glass-card">
+
+          <div class="row align-items-center text-start">
+
+            <!-- LEFT : EVENT POSTER -->
+            <div class="col-md-6 text-center">
+
+              <div class="poster-wrapper">
+
+                <!-- <span class="event-badge">
+                  🎉 Event Special
+                </span> -->
+
+                <img src="http://localhost:3000/images/{{event.event_poster}}"
+                     class="event-poster"
+                     alt="{{event.event_name}}">
+
+              </div>
+
+            </div>
+
+            <!-- RIGHT : POLL -->
+            <div class="col-md-6">
+
+              <div class="poll-card">
+
+                <h4 class="event-title">
+                  🎉 {{ event.event_name }}
+                </h4>
+
+                <p class="poll-question">
+                  What do you want for lunch today?
+                </p>
+
+                <!-- FOOD OPTIONS -->
+                <div *ngFor="let food of event.foods"
+                     class="poll-option"
+                     [class.selected]="selectedFood[event.event_id] === food.eventfood_id"
+                     (click)="selectFood(event.event_id, food.eventfood_id)">
+
+                  <img src="http://localhost:3000/images/{{food.food_image}}"
+                       class="poll-food-img">
+
+                  <div class="poll-info">
+
+                    <div class="d-flex justify-content-between">
+
+                      <div class="food-name">
+                        {{ food.food_name }}
+                      </div>
+
+                      <div class="vote-percent">
+                        {{ getVotePercentage(food, event.foods) }}%
+                      </div>
+
+                    </div>
+
+                    <!-- PROGRESS BAR -->
+                    <div class="progress mt-2">
+                      <div class="progress-bar"
+                           role="progressbar"
+                           [style.width.%]="getVotePercentage(food, event.foods)">
+                      </div>
+                    </div>
+
+                    <div class="vote-count mt-1">
+                      {{ food.count }} votes
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <!-- VOTE BUTTON -->
+                <button class="vote-btn mt-3"
+                        (click)="vote(event.event_id)">
+                  Vote Now 🍽
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </ng-container>
+
+  </div>
+
+  <!-- CONTROLS -->
+  <button class="carousel-control-prev"
+          type="button"
+          data-bs-target="#eventCarousel"
+          data-bs-slide="prev">
+
+    <span class="carousel-control-prev-icon"></span>
+
+  </button>
+
+  <button class="carousel-control-next"
+          type="button"
+          data-bs-target="#eventCarousel"
+          data-bs-slide="next">
+
+    <span class="carousel-control-next-icon"></span>
+
+  </button>
+
+</div>
+```
+
+  </div>
+</section>
+
+    <!-- Welcome Area Starts -->
+    <!-- <section class="welcome-area section-padding2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 align-self-center">
+                    <div class="welcome-img">
+                        <img src="/Guest/images/welcome-bg.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6 align-self-center">
+                    <div class="welcome-text mt-5 mt-md-0">
+                        <h3><span class="style-change">welcome</span> <br>to food fun</h3>
+                        <p class="pt-3">Created god gathered don't you yielding herb you had. And isn't, god was saw. Dominion. Great sixth for in unto was. Open can't tree am waters brought. Divide after there. Was.</p>
+                        <p>Created god gathered don't you yielding herb you had. And isn't, god was saw. Dominion. Great sixth for in unto was. Open can't tree waters brought. Divide after there. Was. Created god gathered don't you yielding herb you had. And isn't god.</p>
+                        <a href="#" class="template-btn mt-3">book a table</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- Welcome Area End -->
+
+<section class="food-area section-padding">
+  <div class="container">
+    <div class="row">
+
+      @for (data of categoryarray; track data) {
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="single-food">
+
+            <div class="food-img">
+              <img
+                src="http://localhost:3000/images/{{ data.category_image }}"
+                alt="{{ data.category_name }}"
+              >
+            </div>
+
+            <div class="food-content">
+              <div class="d-flex justify-content-between align-items-center">
+                <h5>{{ data.category_name }}</h5>
+              
+              </div>
+
+              <p>{{ data.description }}</p>
+
+              <!-- BOOK NOW BUTTON -->
+              <button
+                class="book-btn"
+                [routerLink]="['/staffmaster/viewsingle', data.category_id]"
+              >
+                Shop Now
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+      }
+
+    </div>
+  </div>
+</section>
+
+
+    <!-- Reservation Area Starts -->
+    <!-- <div class="reservation-area section-padding text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Natural ingredients and testy food</h2>
+                    <h4 class="mt-4">some trendy and popular courses offerd</h4>
+                    <a href="" class="template-btn template-btn2 mt-4">reservation</a>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Reservation Area End -->
+     <!-- Food Area starts -->
+<section class="food-area section-padding">
+    <div class="container">
+
+        <!-- SECTION TITLE -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="section-top">
+                    <h3>
+                        <span class="style-change">we serve</span> <br>
+                        authentic kerala food
+                    </h3>
+
+                    <p class="pt-3">
+                        Experience the rich culinary heritage of Kerala. From the
+                        aromatic spices of Malabar cuisine to the comforting
+                        traditional breakfasts loved across the state, UNIBITES
+                        brings you freshly prepared dishes crafted with authentic
+                        ingredients, bold flavors, and the warmth of Kerala
+                        hospitality.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <!-- POROTTA -->
+            <div class="col-md-4 col-sm-6">
+                <div class="single-food">
+                    <div class="food-img">
+                        <img src="/Staff/images/poratta.jpeg"
+                             class="img-fluid"
+                             alt="Kerala Porotta">
+                    </div>
+
+                    <div class="food-content">
+                        <div class="d-flex justify-content-between">
+                            <h5>Kerala Porotta</h5>
+                            <span class="style-change">Popular</span>
+                        </div>
+
+                        <p class="pt-3">
+                            Flaky, layered flatbread made with refined flour and
+                            grilled to perfection. Best enjoyed with spicy beef
+                            curry or rich chicken gravy.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- APPAM -->
+            <div class="col-md-4 col-sm-6">
+                <div class="single-food mt-5 mt-sm-0">
+                    <div class="food-img">
+                        <img src="/Staff/images/appam stew.png"
+                             class="img-fluid"
+                             alt="Appam">
+                    </div>
+
+                    <div class="food-content">
+                        <div class="d-flex justify-content-between">
+                            <h5>Appam & Stew</h5>
+                            <span class="style-change">Classic</span>
+                        </div>
+
+                        <p class="pt-3">
+                            Soft lacy rice pancakes paired with creamy coconut
+                            milk stew. A traditional Kerala breakfast loved for
+                            its delicate texture and mild flavors.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BIRIYANI -->
+            <div class="col-md-4 col-sm-6">
+                <div class="single-food mt-5 mt-md-0">
+                    <div class="food-img">
+                        <img src="/Staff/images/malabar.png"
+                             class="img-fluid"
+                             alt="Malabar Biryani">
+                    </div>
+
+                    <div class="food-content">
+                        <div class="d-flex justify-content-between">
+                            <h5>Malabar Biryani</h5>
+                            <span class="style-change">Special</span>
+                        </div>
+
+                        <p class="pt-3">
+                            Fragrant basmati rice layered with spiced chicken,
+                            caramelized onions, and roasted cashews. A true
+                            Malabar delicacy packed with rich aroma.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IDIYAPPAM -->
+            <div class="col-md-4 col-sm-6">
+                <div class="single-food mt-5">
+                    <div class="food-img">
+                        <img src="/Staff/images/idii1.png"
+                             class="img-fluid"
+                             alt="Idiyappam">
+                    </div>
+
+                    <div class="food-content">
+                        <div class="d-flex justify-content-between">
+                            <h5>Idiyappam</h5>
+                            <span class="style-change">Healthy</span>
+                        </div>
+
+                        <p class="pt-3">
+                            Steamed rice noodles served soft and light. Perfect
+                            with egg curry, chicken curry, or sweet coconut milk.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SADYA -->
+            <div class="col-md-4 col-sm-6">
+                <div class="single-food mt-5">
+                    <div class="food-img">
+                        <img src="/Staff/images/sadhya1.png"
+                             class="img-fluid"
+                             alt="Kerala Sadya">
+                    </div>
+
+                    <div class="food-content">
+                        <div class="d-flex justify-content-between">
+                            <h5>Kerala Sadya</h5>
+                            <span class="style-change">Traditional</span>
+                        </div>
+
+                        <p class="pt-3">
+                            A grand vegetarian feast served on a banana leaf with
+                            rice, sambar, avial, thoran, pickles, and payasam —
+                            the pride of Kerala festivals.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAZHAM PORI -->
+            <div class="col-md-4 col-sm-6">
+                <div class="single-food mt-5">
+                    <div class="food-img">
+                        <img src="/Staff/images/pazham1.png"
+                             class="img-fluid"
+                             alt="Pazham Pori">
+                    </div>
+
+                    <div class="food-content">
+                        <div class="d-flex justify-content-between">
+                            <h5>Pazham Pori</h5>
+                            <span class="style-change">Snack</span>
+                        </div>
+
+                        <p class="pt-3">
+                            Ripe banana fritters dipped in golden batter and
+                            deep fried until crispy outside and soft inside.
+                            The perfect Kerala tea-time snack.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- Food Area End -->
+
+        <!-- Deshes Area Starts -->
+<div class="deshes-area section-padding">
+    <div class="container">
+
+        <!-- SECTION TITLE -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-top2 text-center">
+                    <h3>Our <span>Kerala</span> Specials</h3>
+                    <p><i>Experience the authentic taste of Kerala with our most loved traditional dishes.</i></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPECIAL 1 -->
+        <div class="row">
+            <div class="col-lg-5 col-md-6 align-self-center">
+
+                <h1>01.</h1>
+
+                <div class="deshes-text">
+
+                    <h3>
+                        <span>Malabar</span><br>
+                        Biryani
+                    </h3>
+
+                    <p class="pt-3">
+                        A fragrant and flavorful rice dish from the Malabar region of Kerala,
+                        cooked with aromatic spices, tender chicken, caramelized onions,
+                        roasted cashews, and fresh herbs. Every bite delivers a rich blend
+                        of spices that makes this dish one of Kerala’s most celebrated
+                        culinary treasures.
+                    </p>
+
+                    <span class="style-change">Chef Special</span>
+
+                    <a [routerLink]="['/staffmaster/category']" class="template-btn3 mt-3">
+                        explore menu
+                        <span><i class="fa fa-long-arrow-right"></i></span>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="col-lg-5 offset-lg-2 col-md-6 align-self-center mt-4 mt-md-0">
+                <img src="/Staff/images/malabar.png" alt="Malabar Biryani" class="img-fluid">
+            </div>
+        </div>
+
+        <!-- SPECIAL 2 -->
+
+        <div class="row mt-5">
+
+            <div class="col-lg-5 col-md-6 align-self-center order-2 order-md-1 mt-4 mt-md-0">
+                <img src="/Staff/images/beef.png" alt="Kerala Porotta" class="img-fluid">
+            </div>
+
+            <div class="col-lg-5 offset-lg-2 col-md-6 align-self-center order-1 order-md-2">
+
+                <h1>02.</h1>
+
+                <div class="deshes-text">
+
+                    <h3>
+                        <span>Kerala</span><br>
+                        Porotta & Beef Curry
+                    </h3>
+
+                    <p class="pt-3">
+                        Soft, flaky layered porotta served with rich and spicy Kerala style
+                        beef curry slow-cooked with coconut oil, curry leaves, and roasted
+                        spices. This iconic combination is a favorite across Kerala and is
+                        loved for its bold flavors and comforting taste.
+                    </p>
+
+                    <span class="style-change">Most Popular</span>
+
+                    <a [routerLink]="['/staffmaster/category']" class="template-btn3 mt-3">
+                        explore menu
+                        <span><i class="fa fa-long-arrow-right"></i></span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+    <!-- Deshes Area End -->
+
+    <!-- Testimonial Area Starts -->
+    <section class="testimonial-area section-padding">
+<div class="overlay"></div>
+
+<div class="container">
+
+<div class="section-top2 text-center">
+<h2>UniBites <span>Campus Reviews</span></h2>
+<p class="subtitle">Real students. Real food. Real UniBites experience 🍔</p>
+</div>
+
+<div class="row mt-5">
+
+<div class="col-md-4">
+<div class="testimonial-card">
+
+<img src="/Staff/images/student2.png" class="student-img">
+
+<div class="stars">★★★★★</div>
+
+<p>
+“UniBites makes lunch breaks so much easier! I can order my favorite
+Porotta & Beef in seconds without standing in long queues.”
+</p>
+
+<h5>Rahul S</h5>
+<span>Computer Science Student</span>
+
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="testimonial-card">
+
+<img src="/Staff/images/student3.png" class="student-img">
+
+<div class="stars">★★★★★</div>
+
+<p>
+“The live menu feature is amazing! I always check UniBites before
+going to the canteen to see what's available.”
+</p>
+
+<h5>Anjali M</h5>
+<span>BCOM Student</span>
+
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="testimonial-card">
+
+<img src="/Staff/images/student1.png" class="student-img">
+
+<div class="stars">★★★★★</div>
+
+<p>
+“Fast ordering, delicious food, and zero waiting time.
+UniBites is the smartest way to enjoy campus meals.”
+</p>
+
+<h5>Adithya K</h5>
+<span>BBA Student</span>
+
+</div>
+</div>
+
+</div>
+
+</div>
+</section>
+
+    <!-- Testimonial Area End -->
+   <!-- UNIBITES FEATURES AREA START -->
+<section class="update-area section-padding">
+    <div class="container">
+
+        <!-- TITLE -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-top2 text-center">
+                    <h3>Why <span>UNIBITES</span> ?</h3>
+                    <p><i>Your smart college canteen companion for quick and delicious meals.</i></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <!-- FEATURE 1 -->
+            <div class="col-md-4">
+                <div class="single-food text-center">
+
+                    <div class="food-img">
+                        <img src="/Staff/images/fast.png" class="img-fluid" alt="">
+                    </div>
+
+                    <div class="food-content">
+                        <h5>Quick Food Ordering</h5>
+
+                        <p>
+                            Skip long canteen queues! UNIBITES allows students to
+                            easily browse the menu and place orders quickly from
+                            their devices.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- FEATURE 2 -->
+            <div class="col-md-4">
+                <div class="single-food text-center">
+
+                    <div class="food-img">
+                        <img src="/Staff/images/live.png" class="img-fluid" alt="">
+                    </div>
+
+                    <div class="food-content">
+                        <h5>Live Menu Updates</h5>
+
+                        <p>
+                            Stay updated with the latest food items available in
+                            the college canteen including today's specials and
+                            popular dishes.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- FEATURE 3 -->
+            <div class="col-md-4">
+                <div class="single-food text-center">
+
+                    <div class="food-img">
+                        <img src="/Staff/images/campus.png" class="img-fluid" alt="">
+                    </div>
+
+                    <div class="food-content">
+                        <h5>Made for Campus Life</h5>
+
+                        <p>
+                            Designed specially for students to explore food
+                            options, view categories, and enjoy their favorite
+                            meals across the campus.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- UNIBITES FEATURES AREA END -->

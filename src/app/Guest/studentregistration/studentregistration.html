@@ -1,0 +1,149 @@
+<div class="registration-wrapper">
+  <div class="container">
+
+    <!-- HEADER -->
+    <div class="form-header">
+      <h1>Create <span>Account</span></h1>
+      <p>Join us and explore amazing flavors</p>
+    </div>
+
+    <form class="register-form"
+          [formGroup]="registrationgroup"
+          enctype="multipart/form-data">
+
+      <!-- STUDENT NAME -->
+      <div class="form-group">
+        <label>Student Name <span>*</span></label>
+        <input type="text"
+               placeholder="Enter full name"
+               formControlName="studentname">
+
+        <small class="error"
+          *ngIf="registrationgroup.controls['studentname'].errors?.['required'] && savestatus">
+          Student name is required
+        </small>
+      </div>
+
+      <!-- EMAIL -->
+      <div class="form-group">
+        <label>Email Address <span>*</span></label>
+        <input type="email"
+               placeholder="student@example.com"
+               formControlName="studentemail">
+
+        <small class="error"
+          *ngIf="registrationgroup.controls['studentemail'].errors?.['required'] && savestatus">
+          Email is required
+        </small>
+
+        <small class="error"
+          *ngIf="registrationgroup.controls['studentemail'].errors?.['email'] && savestatus">
+          Enter a valid email
+        </small>
+      </div>
+
+      <!-- PHOTO -->
+      <div class="form-group">
+        <label>Photo <span>*</span></label>
+        <input type="file"
+               formControlName="studentImage"
+               (change)="selectFile($event)">
+
+        <small class="error"
+          *ngIf="registrationgroup.controls['studentImage'].errors?.['required'] && savestatus">
+          Photo is required
+        </small>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="form-group">
+        <label>Contact Number <span>*</span></label>
+        <input type="text"
+               placeholder="Enter contact number"
+               formControlName="studentcontact">
+
+        <small class="error"
+          *ngIf="registrationgroup.controls['studentcontact'].errors?.['required'] && savestatus">
+          Contact number is required
+        </small>
+
+        <small class="error"
+          *ngIf="registrationgroup.controls['studentcontact'].errors?.['pattern'] && savestatus">
+          Enter valid number (10–15 digits)
+        </small>
+      </div>
+
+      <!-- USERNAME + PASSWORD -->
+      <div class="form-row">
+
+        <div class="form-group">
+          <label>Username <span>*</span></label>
+          <input type="text"
+                 placeholder="Choose username"
+                 formControlName="username">
+
+          <small class="error"
+            *ngIf="registrationgroup.controls['username'].errors?.['required'] && savestatus">
+            Username is required
+          </small>
+
+          <small class="error"
+            *ngIf="registrationgroup.controls['username'].errors?.['minlength'] && savestatus">
+            Minimum 4 characters
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label>Password <span>*</span></label>
+          <input type="password"
+                 placeholder="Create password"
+                 formControlName="password">
+
+          <small class="error"
+            *ngIf="registrationgroup.controls['password'].errors?.['required'] && savestatus">
+            Password is required
+          </small>
+
+          <small class="error"
+            *ngIf="registrationgroup.controls['password'].errors?.['minlength'] && savestatus">
+            Minimum 6 characters
+          </small>
+        </div>
+
+      </div>
+
+      <!-- CONFIRM PASSWORD -->
+      <div class="form-group">
+        <label>Confirm Password <span>*</span></label>
+        <input type="password"
+               placeholder="Re-enter password"
+               formControlName="confirmPassword">
+
+        <small class="error"
+          *ngIf="registrationgroup.controls['confirmPassword'].errors?.['required'] && savestatus">
+          Confirm password is required
+        </small>
+
+        <small class="error"
+          *ngIf="registrationgroup.errors?.['passwordMismatch'] && savestatus">
+          Passwords do not match
+        </small>
+      </div>
+
+      <!-- SUBMIT -->
+      <button type="submit"
+              class="submit-btn"
+              (click)="Onsubmit()">
+        Complete Registration
+      </button>
+
+      <!-- LOGIN LINK -->
+      <div class="login-link">
+        Already have an account?
+        <a routerLink="/login">Login</a>
+      </div>
+
+    </form>
+
+  </div>
+</div>

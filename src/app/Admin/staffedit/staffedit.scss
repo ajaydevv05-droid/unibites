@@ -1,0 +1,148 @@
+/* Background */
+body {
+  background: #f4f6f9;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Main Container */
+.staff-container {
+  margin-top: 150px;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* Wrapper */
+.staff-wrapper {
+  width: 100%;
+  max-width: 750px;
+}
+
+/* Header */
+.staff-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.staff-header h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.staff-header p {
+  color: #7f8c8d;
+  font-size: 16px;
+}
+
+/* Card */
+.staff-card {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Form */
+.staff-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #34495e;
+}
+
+/* Inputs BIG */
+.form-control,
+.form-control-file {
+  height: 55px;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #dcdde1;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+  outline: none;
+}
+
+/* Image Preview */
+.image-preview {
+  text-align: center;
+}
+
+.image-preview img {
+  width: 140px;
+  height: 110px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Buttons */
+.form-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.btn-submit {
+  flex: 1;
+  height: 55px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #4CAF50, #2ecc71);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
+}
+
+.btn-cancel {
+  flex: 1;
+  height: 55px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  background: #e74c3c;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-cancel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .staff-card {
+    padding: 25px;
+  }
+
+  .staff-header h2 {
+    font-size: 24px;
+  }
+}

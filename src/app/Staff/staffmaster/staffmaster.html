@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required Meta Tags -->
+  <!-- <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+
+  <!-- Page Title -->
+  <!-- <title>Foodfun</title> -->
+
+  <!-- Favicon -->
+
+</head>
+
+<body>
+  <!-- Preloader Starts -->
+  <!-- <div class="preloader">
+        <div class="spinner"></div>
+    </div> -->
+  <!-- Preloader End -->
+  <header class="header-area">
+
+    <div class="nav-wrapper">
+
+      <!-- LOGO -->
+      <a [routerLink]="['/staffmaster/staffhome']" class="brand">
+
+        <a [routerLink]="['/staffmaster/staffhome']" class="brand-minimal">
+          UNIBITES
+        </a>
+
+      </a>
+
+      <!-- HAMBURGER (Mobile) -->
+      <div class="hamburger" (click)="toggleMenu()" [class.active]="menuOpen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <!-- MENU -->
+      <nav class="main-menu" [class.active]="menuOpen">
+
+        <ul>
+
+          <li>
+            <a [routerLink]="['/staffmaster/staffhome']">
+              Home
+            </a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/staffmaster/about']">
+              About
+            </a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/staffmaster/category']">
+              Menu
+            </a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/staffmaster/orderdetails']">
+              Orders
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/staffmaster/monthlydetails']">
+              Monthly Payment
+            </a>
+          </li>
+          <!-- CART WITH BADGE -->
+          <li class="cart-link">
+            <a [routerLink]="['/staffmaster/cartdetails']">
+              Cart
+            </a>
+
+            <!-- You can bind dynamic cart count later -->
+            <!-- <span class="cart-badge">
+            {{ cartCount || 0 }}
+          </span> -->
+          </li>
+
+          <li>
+            <a (click)="logout()">
+              Logout
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+
+    </div>
+
+  </header>
+  <router-outlet></router-outlet>
+  <!-- Footer Area Starts -->
+  <footer class="footer-area">
+    <div class="footer-widget section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="single-widget single-widget1">
+               <a [routerLink]="['/staffmaster/staffhome']" style="font-size:30px; font-weight:bold; color:#ff6b00; letter-spacing:2px;">
+    UNI<span style="color:#f45309;">BITES</span>
+</a>
+                           <p class="mt-3" style="color:white;">
+Unibites brings you the authentic taste of Kerala cuisine with freshly prepared
+traditional dishes. From crispy porotta to flavorful Malabar biryani, we serve
+food that feels like home.
+</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="single-widget single-widget2 my-5 my-md-0">
+              <h5 class="mb-4" style="color:rgb(38, 12, 241);">contact us</h5>
+              <div class="d-flex">
+                <div class="into-icon">
+                  <i class="fa fa-map-marker" style="color:rgb(244, 28, 28);"></i>
+                </div>
+                <div class="info-text">
+                  <p style="color:rgb(14, 203, 236);">1234 Some St San Francisco, CA 94102, US 1.800.123.4567 </p>
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="into-icon">
+                  <i class="fa fa-phone" style="color:rgb(27, 229, 5);"></i>
+                </div>
+                <div class="info-text">
+                  <p style="color:rgb(14, 203, 236);">(123) 456 78 90</p>
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="into-icon">
+                  <i class="fa fa-envelope-o" style="color:rgb(213, 9, 107);"></i>
+                </div>
+                <div class="info-text">
+                  <p style="color:rgb(14, 203, 236);">support@axiomthemes.com</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="single-widget single-widget3">
+              <h5 class="mb-4" style="color:rgb(233, 135, 7);">opening hours</h5>
+                       <p style="color:white;">Sat-Sun ...................... Closed</p>
+                            <p style="color:white;">Mon-Fri .............. 10 am - 3.30 pm</p>
+                            <p style="color:white;">Holidays ............. 10 am - 12 pm</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 col-md-6">
+            <span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              Copyright &copy;
+              <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
+              with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                target="_blank">Colorlib</a>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </span>
+          </div>
+          <div class="col-lg-5 col-md-6">
+            <div class="social-icons">
+              <ul>
+               <li class="no-margin" style="color:#ff9800; font-weight:600;">Follow Us</li>
+               <li><a href="#"><i class="fa fa-facebook" style="color:#1877F2"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter" style="color:#1DA1F2"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus" style="color:#DB4437"></i></a></li>
+                                <li><a href="#"><i class="fa fa-pinterest" style="color:#E60023"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram" style="color:#E4405F"></i></a></li>
+                            </ul>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer Area End -->
+
+
+  <!-- Javascript -->
+  <script>
+    let lastScrollTop = 0;
+    const header = document.querySelector(".header-area");
+
+    window.addEventListener("scroll", function () {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop > lastScrollTop) {
+        // Scrolling down
+        header.classList.add("header-hidden");
+      } else {
+        // Scrolling up
+        header.classList.remove("header-hidden");
+      }
+
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+  </script>
+</body>
+
+</html>

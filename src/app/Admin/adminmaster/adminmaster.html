@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>UNIBITES - Bootstrap 5 Admin Dashboard</title>
+<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" href="/Admin/assets/img/unibites-logo.png" type="image/x-icon" />
+
+<script src="/Admin/assets/js/plugin/webfont/webfont.min.js"></script>
+<script>
+  WebFont.load({
+    google: { families: ["Public Sans:300,400,500,600,700"] },
+    custom: {
+      families: [
+        "Font Awesome 5 Solid",
+        "Font Awesome 5 Regular",
+        "Font Awesome 5 Brands",
+        "simple-line-icons",
+      ],
+      urls: ["/Admin/assets/css/fonts.min.css"],
+    },
+  });
+</script>
+
+<link rel="stylesheet" href="/Admin/assets/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/Admin/assets/css/plugins.min.css" />
+<link rel="stylesheet" href="/Admin/assets/css/kaiadmin.min.css" />
+</head>
+
+<body>
+<div class="wrapper">
+
+<!-- ================= SIDEBAR ================= -->
+<div class="sidebar" data-background-color="dark">
+  <div class="sidebar-logo">
+    <div class="logo-header" data-background-color="dark">
+    <a [routerLink]="['/adminmaster/adminhome']" class="logod">
+  <img src="/Admin/assets/img/logo2.png" class="sidebar-logo-img" style="width: 204px;height: 200px;">
+</a>
+    </div>
+  </div>
+
+  <div class="sidebar-wrapper scrollbar scrollbar-inner">
+    <div class="sidebar-content">
+      <ul class="nav nav-secondary">
+
+        <li class="nav-item">
+          <a [routerLink]="['/adminmaster/adminhome']">
+            <i class="fa fa-home"></i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+
+       <li class="nav-item">
+
+<a data-bs-toggle="collapse" data-bs-target="#registrationMenu" aria-expanded="false">
+<i class="fa fa-user-plus"></i>
+<p>Registration</p>
+<span class="caret"></span>
+</a>
+
+<div class="collapse" id="registrationMenu" data-bs-parent=".nav-secondary">
+
+<ul class="nav nav-collapse">
+
+<li>
+<a [routerLink]="['/adminmaster/staffregistration']">
+<span class="sub-item">Staff Registration</span>
+</a>
+</li>
+
+<li>
+<a [routerLink]="['/adminmaster/categoryregistration']">
+<span class="sub-item">Category Registration</span>
+</a>
+</li>
+
+<li>
+<a [routerLink]="['/adminmaster/foodregistration']">
+<span class="sub-item">Food Registration</span>
+</a>
+</li>
+
+</ul>
+
+</div>
+
+</li>
+    <li class="nav-item">
+          <a [routerLink]="['/adminmaster/categoryview']">
+            <i class="fa fa-users"></i>
+            <p>Category View</p>
+          </a>
+        </li>
+    <li class="nav-item">
+          <a [routerLink]="['/adminmaster/foodview']">
+            <i class="fa fa-users"></i>
+            <p>Food View</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a [routerLink]="['/adminmaster/staffview']">
+            <i class="fa fa-users"></i>
+            <p>Staff View</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['/adminmaster/stockupdate']">
+            <i class="fa fa-users"></i>
+            <p>Update Stock</p>
+          </a>
+        </li>
+        
+
+        <li class="nav-item">
+          <a [routerLink]="['/adminmaster/customerorder']">
+            <i class="fa fa-shopping-cart"></i>
+            <p>Orders View</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a [routerLink]="['/adminmaster/paymentview']">
+            <i class="fa fa-credit-card"></i>
+            <p>Payment View</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a [routerLink]="['/adminmaster/feedbackview']">
+            <i class="fa fa-comments"></i>
+            <p>Feedback View</p>
+          </a>
+        </li>
+         <li class="nav-item">
+          <a [routerLink]="['/adminmaster/eventreg']">
+            <i class="fa fa-gift"></i>
+            <p>Event Registration</p>
+          </a>
+        </li>
+         <li class="nav-item">
+          <a [routerLink]="['/adminmaster/eventfoodreg']">
+            <i class="fa fa-gift"></i>
+            <p>Event Food Registration</p>
+          </a>
+        </li>
+          <li class="nav-item">
+          <a [routerLink]="['/adminmaster/paymentreport']">
+            <i class="	fa fa-bar-chart"></i>
+            <p>Payment Report</p>
+          </a>
+        </li>
+           <li class="nav-item">
+          <a [routerLink]="['/adminmaster/salesreport']">
+            <i class="	fa fa-bar-chart"></i>
+            <p>Sales Report</p>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- ================= END SIDEBAR ================= -->
+
+
+<!-- ================= MAIN PANEL ================= -->
+<div class="main-panel">
+
+  <!-- HEADER -->
+  <div class="main-header">
+    <nav class="navbar navbar-header navbar-expand-lg border-bottom">
+      <div class="container-fluid d-flex justify-content-between">
+        
+        <span class="navbar-brand">UNIBITES</span>
+
+        <!-- Logout Button -->
+        <button class="btn btn-danger btn-sm" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+
+      </div>
+    </nav>
+  </div>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+
+  <footer class="footer">
+    <div class="container-fluid d-flex justify-content-between">
+      <div class="copyright">
+        2024, made with ❤️ by ThemeKita
+      </div>
+    </div>
+  </footer>
+
+</div>
+<!-- ================= END MAIN PANEL ================= -->
+
+</div>
+
+<script src="/Admin/assets/js/core/jquery-3.7.1.min.js"></script>
+<script src="/Admin/assets/js/core/popper.min.js"></script>
+<script src="/Admin/assets/js/core/bootstrap.bundle.min.js"></script>
+<script src="/Admin/assets/js/kaiadmin.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<div class="page">
+
+<!-- REAL HD FOOD BACKGROUND -->
+<div class="food-bg">
+
+<img class="food f1" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd">
+<img class="food f2" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c">
+<img class="food f3" src="https://images.unsplash.com/photo-1594007654729-407eedc4be65">
+<img class="food f4" src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092">
+
+</div>
+
+
+<div class="content">
+
+<!-- LEFT TEXT -->
+<div class="hero-text">
+
+<h1>
+Discover <span>Delicious</span><br>
+Food with <b>UNIBITES</b>
+</h1>
+
+<p>Your campus food companion</p>
+
+</div>
+
+
+<!-- LOGIN CARD -->
+
+<div class="login-card">
+
+<h2>Sign In</h2>
+
+<form [formGroup]="loginformgroup">
+
+<div class="input-box">
+<input type="text" placeholder="Username" formControlName="username">
+</div>
+
+<div class="input-box">
+<input type="password" placeholder="Password" formControlName="password">
+</div>
+
+<button class="login-btn" (click)="login()">Login</button>
+<div class="forgot">
+<a (click)="forgotPassword()">Forgot Password?</a>
+</div>
+
+<p class="register">
+Don't have an account?
+<a [routerLink]="['/studentregistration']">Register</a>
+</p>
+
+</form>
+
+</div>
+
+</div>
+</div>

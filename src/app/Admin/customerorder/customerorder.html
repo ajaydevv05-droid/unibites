@@ -1,0 +1,110 @@
+<div class="container">
+
+    <!-- STATS -->
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon blue">📦</div>
+                <div>
+                    <div class="stat-label">Total Orders</div>
+                    <div class="stat-value">{{orders.length}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon green">👨‍🏫</div>
+                <div>
+                    <div class="stat-label">Staff Orders</div>
+                    <div class="stat-value">{{stafforders}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon cyan">🎓</div>
+                <div>
+                    <div class="stat-label">Student Orders</div>
+                    <div class="stat-value">{{studentorders}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon purple">💰</div>
+                <div>
+                    <div class="stat-label">Revenue</div>
+                    <div class="stat-value">₹{{total}}</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- HEADER -->
+    <div class="section-header">
+        <h2 class="section-title">Recent Orders</h2>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" (click)="filterOrders('all')">All</button>
+            <button class="filter-btn" (click)="filterOrders('staff')">Staff</button>
+            <button class="filter-btn" (click)="filterOrders('student')">Student</button>
+        </div>
+    </div>
+
+
+    <!-- ORDERS -->
+    <div class="orders-grid">
+        @if(orders.length === 0) {
+        <div class="no-orders">
+            <p>No orders found.</p>
+        </div>
+        }
+        @else{
+        @for(o of filteredOrders; track o.bookingmaster_id) {
+        <div class="order-card">
+
+            <div class="order-header">
+                <img src="http://localhost:3000/images/{{o.student_photo}}" class="customer-avatar">
+
+                <div>
+                    <div class="customer-name">{{o.student_name}}</div>
+                    <div class="order-id">#ORD-{{o.bookingmaster_id}}</div>
+                </div>
+            </div>
+
+            <div class="order-meta">
+
+                <div>
+                    <div class="meta-label">Order Date</div>
+                    <div class="meta-value">{{o.bookingdate | date:'dd MMM yyyy'}}</div>
+                </div>
+
+                <div>
+                    <div class="meta-label">Amount</div>
+                    <div class="meta-value amount">₹{{o.totalamount}}</div>
+                </div>
+
+                <div>
+                    <div class="meta-label">Role</div>
+                    <div class="meta-value">{{o.role}}</div>
+                </div>
+
+            </div>
+
+            <div class="order-footer">
+                <button class="btn btn-primary" [routerLink]="['/adminmaster/customerorderdetails',o.bookingmaster_id]">
+                    View Details
+                </button>
+            </div>
+        </div>
+        }
+        }
+    </div>
+
+</div>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNIBITES | Event Registration</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="content">
+
+    <div class="page-title">
+        Add New Event
+        <span>Fill in the details below to register a new event</span>
+    </div>
+
+    <div class="card">
+
+        <div class="card-header">
+            <div class="card-header-icon">📅</div>
+            <div>
+                <h3>Event Registration Form</h3>
+                <p>Fields marked with <span class="req">*</span> are required</p>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <form [formGroup]="eventForm" enctype="multipart/form-data">
+
+                <div class="section-label">Basic Information</div>
+
+                <div class="form-grid">
+
+                    <!-- EVENT NAME -->
+                    <div class="form-group">
+                        <label>Event Name <span class="req">*</span></label>
+
+                        <input type="text"
+                               placeholder="e.g. Annual Tech Fest 2026"
+                               formControlName="eventName">
+
+                        <small class="text-danger"
+                        *ngIf="eventForm.controls['eventName'].errors?.['required'] && savestatus">
+                        Event name is required
+                        </small>
+                    </div>
+
+
+                    <!-- EVENT DATE -->
+                    <div class="form-group">
+                        <label>Event Date <span class="req">*</span></label>
+
+                        <input type="date" formControlName="eventDate">
+
+                        <small class="text-danger"
+                        *ngIf="eventForm.controls['eventDate'].errors?.['required'] && savestatus">
+                        Event date is required
+                        </small>
+                    </div>
+
+
+                    <!-- EVENT POSTER -->
+                    <div class="form-group full">
+                        <label>Upload Poster <span class="req">*</span></label>
+
+                        <label class="file-upload-box">
+                            <span>Click to upload</span>
+                            <small>PNG, JPG, WEBP up to 5MB</small>
+
+                            <input type="file"
+                                   accept="image/*"
+                                   formControlName="eventPoster"
+                                   (change)="selectFile($event)">
+                        </label>
+
+                        <small class="text-danger"
+                        *ngIf="eventForm.controls['eventPoster'].errors?.['required'] && savestatus">
+                        Please upload an event poster
+                        </small>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+
+        <div class="card-footer">
+            <button type="submit"
+                    class="btn btn-success"
+                    (click)="Onsubmit()">
+                Register Event
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

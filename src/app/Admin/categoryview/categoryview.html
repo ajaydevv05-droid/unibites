@@ -1,0 +1,72 @@
+<div class="container category-page">
+
+```
+<div class="header">
+    <h1>🍽 Food Categories</h1>
+    <p>Manage all food categories in the system</p>
+</div>
+
+<div class="table-card">
+
+    <table class="category-table">
+
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Category</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th class="action-col">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @for(data of categoryarray; track data; let i=$index){
+
+            <tr>
+
+                <td class="serial">{{ i + 1 }}</td>
+
+                <td class="cat-name">
+                    {{ data.category_name }}
+                </td>
+
+                <td>
+                    <img
+                    src="http://localhost:3000/images/{{data.category_image}}"
+                    class="category-img">
+                </td>
+
+                <td class="desc">
+                    {{ data.description }}
+                </td>
+
+                <td class="actions">
+
+                    <button
+                    class="edit-btn"
+                    [routerLink]="['/adminmaster/categoryedit', data.category_id]">
+                    ✏ Edit
+                    </button>
+
+                    <button
+                    class="delete-btn"
+                    (click)="categorydelete(data.category_id)">
+                    🗑 Delete
+                    </button>
+
+                </td>
+
+            </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
+```
+
+</div>

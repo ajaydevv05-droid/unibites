@@ -1,0 +1,53 @@
+/* Card styling */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+/* Header */
+.card-header h4 {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Labels */
+.form-label {
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #495057;
+}
+
+/* Inputs */
+.form-control {
+    border-radius: 8px;
+    height: 44px;
+    border: 1px solid #dee2e6;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: #4c84ff;
+    box-shadow: 0 0 0 0.15rem rgba(76,132,255,.15);
+}
+
+/* Button */
+.btn-primary {
+    background: linear-gradient(45deg,#4c84ff,#2a6df4);
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    height: 44px;
+    padding: 0 28px;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+/* spacing */
+.card-body {
+    padding: 30px;
+}

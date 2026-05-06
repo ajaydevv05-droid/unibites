@@ -1,0 +1,70 @@
+<section class="cart-section">
+  @if(cartarray.length === 0) {
+  <div class="cart-wrapper">
+    <div class="cart-card">
+      <i class="fa-solid fa-cart-shopping cart-icon"></i>
+
+      <h2>Your Cart is Empty</h2>
+      <p>Please add some items to your cart.</p>
+
+      <button class="btn-primary" [routerLink]="'/studentmaster/categorydetails'">
+        Shop Now
+      </button>
+    </div>
+  </div>
+
+  }
+  @else {
+  <div class="container">
+    <!-- TITLE -->
+    <h2 class="cart-title">Your <span>Cart</span></h2>
+
+    <div class="cart-wrapper">
+
+      <!-- CART ITEMS -->
+      <div class="cart-items">
+
+        @for (data of cartarray; track data) {
+        <div class="cart-item">
+
+          <img class="food-img" src="http://localhost:3000/images/{{ data.food_image }}" alt="{{ data.food_name }}">
+
+          <div class="item-details">
+            <h4>{{ data.food_name }}</h4>
+            <div class="item-quantity">Nos: {{ data.quantity }}</div>
+          </div>
+
+          <div class="item-price">₹{{ data.amount }}</div>
+
+        </div>
+        }
+
+      </div>
+
+      <!-- CART SUMMARY -->
+      <div class="cart-summary">
+        <h3>Order Summary</h3>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span>₹{{ total }}</span>
+        </div>
+
+        <div class="summary-row total">
+          <span>Total</span>
+          <span>₹{{ total }}</span>
+        </div>
+
+        <button class="checkout-btn primary" [routerLink]="['/payment']">
+          Buy Now
+        </button>
+
+        <button class="checkout-btn secondary" (click)="placeorder()">
+          Place Order
+        </button>
+      </div>
+
+    </div>
+  </div>
+  }
+</section>

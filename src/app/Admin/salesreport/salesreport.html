@@ -1,0 +1,122 @@
+<div class="report-container">
+
+  <h1 class="title">📊 Admin Sales Report</h1>
+
+  <!-- FILTER SECTION -->
+  <div class="filter-section">
+
+    <!-- FROM DATE -->
+    <div class="input-group">
+      <label>From Date</label>
+      <input
+        type="date"
+        [(ngModel)]="fromDate"
+        name="fromDate"
+        required
+        #from="ngModel">
+
+      <small class="error" *ngIf="from.invalid && from.touched">
+        From Date is required
+      </small>
+    </div>
+
+    <!-- TO DATE -->
+    <div class="input-group">
+      <label>To Date</label>
+      <input
+        type="date"
+        [(ngModel)]="toDate"
+        name="toDate"
+        required
+        [min]="fromDate"
+        #to="ngModel">
+
+      <small class="error" *ngIf="to.invalid && to.touched">
+        To Date is required
+      </small>
+
+      <small class="error" *ngIf="fromDate && toDate && toDate < fromDate">
+        To Date cannot be earlier than From Date
+      </small>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="button-group">
+
+      <button
+        class="btn primary"
+        (click)="generateReport()"
+        [disabled]="!fromDate || !toDate || toDate < fromDate">
+        Generate
+      </button>
+
+      <button
+        class="btn success"
+        (click)="downloadPDF()"
+        [disabled]="!reportData">
+        Download PDF
+      </button>
+
+      <button
+        class="btn warning"
+        (click)="exportExcel()"
+        [disabled]="!reportData">
+        Export Excel
+      </button>
+
+      <button
+        class="btn danger"
+        (click)="resetReport()">
+        Reset
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- SUMMARY CARDS -->
+  <div class="cards" *ngIf="reportData?.summary">
+
+    <div class="card">
+      <h3>Total Revenue</h3>
+      <p class="amount">₹ {{ reportData.summary.total_revenue }}</p>
+    </div>
+
+    <div class="card">
+      <h3>Total Orders</h3>
+      <p>{{ reportData.summary.total_orders }}</p>
+    </div>
+
+    <div class="card">
+      <h3>Total Items Sold</h3>
+      <p>{{ reportData.summary.itemsold }}</p>
+    </div>
+
+    <div class="card">
+      <h3>Total Customers</h3>
+      <p>{{ reportData.summary.customercount }}</p>
+    </div>
+
+  </div>
+
+  <!-- CHART SECTION -->
+  <div class="charts" *ngIf="reportData">
+
+    <div class="chart-box">
+      <h2>Date-wise Sales</h2>
+      <canvas id="salesChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+      <h2>Top Selling Items</h2>
+      <canvas id="itemChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+      <h2>Payment Methods</h2>
+      <canvas id="paymentChart"></canvas>
+    </div>
+
+  </div>
+
+</div>

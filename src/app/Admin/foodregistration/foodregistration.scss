@@ -1,0 +1,86 @@
+.food-wrapper {
+  margin-top: 120px;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+/* Bigger header */
+.big-header h3 {
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #6c757d;
+}
+
+/* Bigger card */
+.large-card {
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+/* Bigger body padding */
+.big-body {
+  padding: 50px;
+}
+
+/* Labels bigger */
+label {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* Large Inputs */
+.large-input {
+  height: 55px;
+  font-size: 16px;
+  border-radius: 12px;
+  padding: 12px 15px;
+}
+
+/* File Upload Bigger */
+.large-file input[type="file"] {
+  padding: 18px;
+  font-size: 15px;
+  border-radius: 12px;
+  border: 2px dashed #ccc;
+  background: #fafafa;
+}
+
+/* Buttons Bigger */
+.big-buttons {
+  margin-top: 40px;
+  gap: 20px;
+}
+
+.large-btn {
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 12px;
+}
+
+/* Submit Button */
+.btn-submit {
+  background: linear-gradient(135deg, #4dabf7, #1976d2);
+  color: white;
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-submit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(25,118,210,0.4);
+}
+
+/* Cancel */
+.btn-cancel {
+  background: #f1f3f5;
+  border: none;
+}
+
+.btn-cancel:hover {
+  background: #e9ecef;
+}

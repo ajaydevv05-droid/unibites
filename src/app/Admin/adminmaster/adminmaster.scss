@@ -1,0 +1,28 @@
+/* Logo Header Container */
+.logo-header {
+  height: 100px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* Logo Image */
+.sidebar-logo-img {
+  height: 80px;     /* Bigger & premium */
+  width: auto;
+  object-fit: contain;
+}
+
+/* Remove extra white look */
+.sidebar-logo {
+  background: #1f2a44; /* same as sidebar dark */
+  padding: 10px 0;
+}
+.caret{
+transition:0.3s;
+}
+
+.nav-item .show + .caret{
+transform:rotate(180deg);
+}

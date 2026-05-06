@@ -1,0 +1,155 @@
+<br><br><section class="orders-page">
+
+  <div class="container">
+    <div class="page-header">
+      <h1>My Orders</h1>
+      <p>Track and manage your canteen orders</p>
+    </div>
+
+    <!-- ORDER CARD -->
+    <div class="order-card">
+
+      <!-- HEADER -->
+      <div class="order-header">
+        <div>
+          <h3>Order #CANTEEN-0892</h3>
+          <span class="order-sub">College Canteen</span>
+        </div>
+      </div>
+
+      <!-- ITEMS -->
+      <div class="page-wrapper">
+        <div class="order-items">
+
+          @for (data of cartarray; track data) {
+          <div class="item-row">
+
+            <img src="http://localhost:3000/images/{{ data.food_image }}" class="item-image">
+
+            <div class="item-info">
+              <h4>{{ data.food_name }}</h4>
+
+              <div class="item-meta">
+                <span>Qty: {{ data.quantity }}</span>
+                <span class="price">₹{{ data.amount }}</span>
+              </div>
+
+              <div class="item-extra">
+                <!-- <span
+                class="status"
+                [class.paid]="data.status === 'Paid'"
+                [class.pending]="data.status !== 'Paid'">
+                {{ data.status }}
+              </span>
+                 @if (data.status !== 'Paid') {
+        <button class="btn pay" [routerLink]="'/payment1'">
+          Pay Now
+        </button>
+      } -->
+
+                @if (data.status === 'Paid'|| data.status !== 'Paid') {
+                <button class="btn feedback" data-bs-toggle="modal" data-bs-target="#feedbackModal"(click)="openFeedbackModal(data.food_id)">
+                  Give Feedback
+                </button>
+
+                }
+                <span class="date">{{ data.bookingdate |date:'dd MMM yyyy' }}</span>
+              </div>
+            </div>
+
+          </div>
+          }
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="order-footer">
+          <span>Total Amount</span>
+          <strong>₹{{ total }}</strong>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+
+
+<div class="modal fade" id="feedbackModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content feedback-box">
+
+      <div class="modal-header border-0 text-center">
+        <div class="w-100">
+          <h3 class="fw-bold">Rate Your Experience</h3>
+          <p class="text-muted mb-0">How was your food today?</p>
+        </div>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div> 
+
+      <div class="modal-body">
+      <form [formGroup]="feedbackForm" >
+
+    <!-- EMOJI RATING -->
+    <div class="emoji-ratings">
+      <label>
+        <input type="radio" formControlName="rating" value="1">
+        😞 <span>Poor</span>
+      </label>
+
+      <label>
+        <input type="radio" formControlName="rating" value="2">
+        😐 <span>Fair</span>
+      </label>
+
+      <label>
+        <input type="radio" formControlName="rating" value="3">
+        🙂 <span>Good</span>
+      </label>
+
+      <label>
+        <input type="radio" formControlName="rating" value="4">
+        😊 <span>Great</span>
+      </label>
+
+      <label>
+        <input type="radio" formControlName="rating" value="5">
+        😍 <span>Excellent</span>
+      </label>
+    </div>
+
+    <!-- RATING ERROR -->
+    <small class="error"
+      *ngIf="feedbackForm.controls['rating'].invalid && feedbackSubmitted">
+      Please select a rating
+    </small>
+
+    <!-- FEEDBACK TEXT -->
+    <div class="form-group mt-4">
+      <textarea
+        class="feedback-textarea"
+        rows="4"
+        placeholder="Tell us more about your experience..."
+        formControlName="description">
+      </textarea>
+
+      <small class="error"
+        *ngIf="feedbackForm.controls['description'].invalid && feedbackSubmitted">
+        Feedback must be at least 10 characters
+      </small>
+    </div>
+
+    <!-- SUBMIT -->
+    <button type="submit" class="submit-btn w-100 mt-4"(click)="submitFeedback()">
+      Submit Feedback
+    </button>
+
+  </form>
+
+</div> 
+
+    </div>
+  </div>
+</div> 

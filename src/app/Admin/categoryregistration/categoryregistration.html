@@ -1,0 +1,91 @@
+<div class="container category-wrapper">
+  <div class="page-inner">
+
+    <!-- Header -->
+    <div class="page-header">
+      <h3>📂 Category Registration</h3>
+      <p class="subtitle">Create and manage food categories</p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="card category-card">
+
+          <div class="card-header">
+            <div class="card-title">Category Registration Form</div>
+          </div>
+
+          <div class="card-body">
+
+            <form [formGroup]="categoryformgroup" enctype="multipart/form-data">
+
+              <!-- Category Name -->
+              <div class="form-group">
+                <label>Category Name</label>
+
+                <input type="text"
+                       class="form-control custom-input"
+                       placeholder="Enter category name"
+                       formControlName="categoryName">
+
+                <small class="text-danger"
+                       *ngIf="categoryformgroup.controls['categoryName'].errors?.['required'] && savestatus">
+                  Category name is required
+                </small>
+              </div>
+
+              <!-- Category Image -->
+              <div class="form-group">
+                <label>Category Image</label>
+
+                <div class="file-upload">
+                  <input type="file"
+                         formControlName="categoryImage"
+                         (change)="selectFile($event)">
+                </div>
+
+                <small class="text-danger"
+                       *ngIf="categoryformgroup.controls['categoryImage'].errors?.['required'] && savestatus">
+                  Please upload a category image
+                </small>
+              </div>
+
+              <!-- Description -->
+              <div class="form-group">
+                <label>Description</label>
+
+                <textarea class="form-control custom-input"
+                          rows="5"
+                          placeholder="Enter category description"
+                          formControlName="description"></textarea>
+
+                <small class="text-danger"
+                       *ngIf="categoryformgroup.controls['description'].errors?.['required'] && savestatus">
+                  Description is required
+                </small>
+              </div>
+
+              <!-- Buttons -->
+              <div class="form-actions">
+                <button type="button"
+                        class="btn btn-submit"
+                        (click)="Onsubmit()">
+                  Submit
+                </button>
+
+                <button type="reset"
+                        class="btn btn-cancel">
+                  Cancel
+                </button>
+              </div>
+
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,133 @@
+<div class="staff-container">
+  <div class="staff-wrapper">
+
+    <div class="staff-header">
+      <h2>👨‍💼 Staff Registration</h2>
+      <p>Add new staff members to the system</p>
+    </div>
+
+    <div class="staff-card">
+
+      <form class="staff-form"
+            [formGroup]="staffformgroup"
+            enctype="multipart/form-data">
+
+        <!-- STAFF NAME -->
+        <div class="form-group">
+          <label>Staff Name</label>
+
+          <input type="text"
+                 class="form-control"
+                 placeholder="Enter staff name"
+                 formControlName="staffName">
+
+          <div class="validation"
+               *ngIf="staffformgroup.get('staffName')?.touched &&
+                      staffformgroup.get('staffName')?.invalid">
+
+            <small *ngIf="staffformgroup.get('staffName')?.errors?.['required']">
+              Staff name is required
+            </small>
+
+            <small *ngIf="staffformgroup.get('staffName')?.errors?.['minlength']">
+              Name must be at least 3 characters
+            </small>
+
+          </div>
+        </div>
+
+
+        <!-- STAFF IMAGE -->
+        <div class="form-group">
+          <label>Staff Image</label>
+
+          <input type="file"
+                 class="form-control-file"
+                 formControlName="staffImage"
+                 (change)="selectedFile($event)">
+
+          <div class="validation"
+               *ngIf="staffformgroup.get('staffImage')?.touched &&
+                      staffformgroup.get('staffImage')?.invalid">
+
+            <small>Staff image is required</small>
+
+          </div>
+        </div>
+
+
+        <!-- IMAGE PREVIEW -->
+        <div class="image-preview" *ngIf="staffarray.length > 0">
+          <img src="http://localhost:3000/images/{{staffarray[0].staff_photo}}">
+        </div>
+
+
+        <!-- EMAIL -->
+        <div class="form-group">
+          <label>Email Address</label>
+
+          <input type="email"
+                 class="form-control"
+                 placeholder="Enter staff email"
+                 formControlName="email">
+
+          <div class="validation"
+               *ngIf="staffformgroup.get('email')?.touched &&
+                      staffformgroup.get('email')?.invalid">
+
+            <small *ngIf="staffformgroup.get('email')?.errors?.['required']">
+              Email is required
+            </small>
+
+            <small *ngIf="staffformgroup.get('email')?.errors?.['email']">
+              Enter a valid email address
+            </small>
+
+          </div>
+        </div>
+
+
+        <!-- CONTACT -->
+        <div class="form-group">
+          <label>Contact Number</label>
+
+          <input type="text"
+                 class="form-control"
+                 placeholder="Enter 10 digit contact number"
+                 formControlName="contact">
+
+          <div class="validation"
+               *ngIf="staffformgroup.get('contact')?.touched &&
+                      staffformgroup.get('contact')?.invalid">
+
+            <small *ngIf="staffformgroup.get('contact')?.errors?.['required']">
+              Contact number is required
+            </small>
+
+            <small *ngIf="staffformgroup.get('contact')?.errors?.['pattern']">
+              Contact number must be 10 digits
+            </small>
+
+          </div>
+        </div>
+
+
+        <!-- BUTTONS -->
+        <div class="form-buttons">
+          <button type="button"
+                  class="btn-submit"
+                  (click)="onsubmit()">
+            Submit
+          </button>
+
+          <button type="reset"
+                  class="btn-cancel">
+            Cancel
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

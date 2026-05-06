@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>About UNIBITES</title>
+
+<style>
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f5f7fa;
+color:#333;
+}
+
+/* HERO SECTION */
+
+.about-hero{
+height:60vh;
+background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+url("https://images.unsplash.com/photo-1504674900247-0877df9cc836");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+}
+
+.hero-content h1{
+font-size:55px;
+font-weight:600;
+letter-spacing:2px;
+}
+
+.hero-content span{
+color:#ffb703;
+}
+
+.hero-content p{
+margin-top:10px;
+font-size:18px;
+opacity:0.9;
+}
+
+/* MAIN SECTION */
+
+.about-section{
+padding:80px 10%;
+background:white;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+}
+
+/* HEADINGS */
+
+.about-section h2{
+font-size:32px;
+margin-top:40px;
+margin-bottom:15px;
+position:relative;
+}
+
+.about-section h2::after{
+content:"";
+width:60px;
+height:4px;
+background:#ffb703;
+position:absolute;
+left:0;
+bottom:-8px;
+border-radius:10px;
+}
+
+.about-section p{
+line-height:1.8;
+font-size:16px;
+color:#555;
+margin-bottom:10px;
+}
+
+/* FEATURES GRID */
+
+.features{
+margin-top:40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+/* FEATURE CARDS */
+
+.feature-card{
+background:rgba(255,255,255,0.8);
+backdrop-filter:blur(10px);
+border-radius:15px;
+padding:30px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+transition:0.4s;
+text-align:center;
+}
+
+.feature-card:hover{
+transform:translateY(-10px);
+box-shadow:0 15px 40px rgba(0,0,0,0.15);
+}
+
+.feature-card h3{
+margin-bottom:10px;
+font-size:20px;
+color:#222;
+}
+
+.feature-card p{
+font-size:15px;
+color:#666;
+}
+
+/* CONCLUSION */
+
+.about-section p:last-child{
+margin-top:20px;
+font-weight:400;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.hero-content h1{
+font-size:38px;
+}
+
+.about-section{
+padding:60px 6%;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HERO SECTION -->
+<section class="about-hero">
+<div class="hero-content">
+<h1>About <span>UNIBITES</span></h1>
+<p>Smart University Canteen Management System</p>
+</div>
+</section>
+
+
+<!-- ABOUT CONTENT -->
+<section class="about-section">
+<div class="container">
+
+<h2>What is UNIBITES?</h2>
+<p>
+UNIBITES is a smart, web-based canteen management and food ordering system
+developed specifically for university and college campuses. It aims to
+digitalize traditional canteen operations by allowing students to browse
+food items, place orders online, and reduce waiting time.
+</p>
+
+<h2>Why UNIBITES?</h2>
+<p>
+Traditional canteen systems often involve long queues, manual order handling,
+and delays in service. UNIBITES solves these problems by automating the
+ordering process and providing real-time food availability and order tracking.
+</p>
+
+<h2>Key Features</h2>
+
+<div class="features">
+
+<div class="feature-card">
+<h3>📱 Online Ordering</h3>
+<p>Students can browse food items and place orders anytime from the system.</p>
+</div>
+
+<div class="feature-card">
+<h3>⚙️ Admin Control</h3>
+<p>Admins can manage food items, categories, prices, and availability.</p>
+</div>
+
+<div class="feature-card">
+<h3>🚀 Fast Service</h3>
+<p>Reduces waiting time and improves efficiency in canteen operations.</p>
+</div>
+
+<div class="feature-card">
+<h3>🔐 Secure System</h3>
+<p>Role-based login for admin, students, and staff members.</p>
+</div>
+
+</div>
+
+<h2>Conclusion</h2>
+<p>
+UNIBITES provides a complete digital solution for university canteens by
+enhancing efficiency, accuracy, and user experience. It modernizes food
+ordering and management, making campus dining smarter and more convenient.
+</p>
+
+</div>
+</section>
+
+</body>
+</html>

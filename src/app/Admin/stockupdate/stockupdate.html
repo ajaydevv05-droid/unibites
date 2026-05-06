@@ -1,0 +1,94 @@
+<div class="container">
+    <form [formGroup]="updatestockform">
+
+        <!-- Category -->
+        <div class="form-group">
+            <label>Select Category</label>
+
+            <select class="form-control"
+                formControlName="category_id"
+                (change)="loadFoods()">
+                <option value="">Select Category</option>
+
+                @for(c of categories; track c;)
+                {
+                <option value="{{c.category_id}}">
+                    {{c.category_name}}
+                </option>
+                }
+
+            </select>
+
+            <small class="text-danger"
+                *ngIf="updatestockform.controls['category_id'].touched || savestatus">
+
+                <span *ngIf="updatestockform.controls['category_id'].errors?.['required']">
+                    Please select a category.
+                </span>
+
+            </small>
+        </div>
+
+
+        <!-- Food -->
+        <div class="form-group">
+            <label>Select Food</label>
+
+            <select class="form-control"
+                formControlName="food_id">
+
+                <option value="">Select Food</option>
+
+                @for(f of foods; track f;)
+                {
+                <option value="{{f.food_id}}">
+                    {{f.food_name}}
+                </option>
+                }
+
+            </select>
+
+            <small class="text-danger"
+                *ngIf="updatestockform.controls['food_id'].touched || savestatus">
+
+                <span *ngIf="updatestockform.controls['food_id'].errors?.['required']">
+                    Please select a food item.
+                </span>
+
+            </small>
+        </div>
+
+
+        <!-- Stock -->
+        <div class="form-group">
+            <label>Add Stock</label>
+
+            <input type="number"
+                formControlName="stock"
+                class="form-control"
+                placeholder="Enter stock quantity">
+
+            <small class="text-danger"
+                *ngIf="updatestockform.controls['stock'].touched || savestatus">
+
+                <span *ngIf="updatestockform.controls['stock'].errors?.['required']">
+                    Stock quantity is required.
+                </span>
+
+                <span *ngIf="updatestockform.controls['stock'].errors?.['min']">
+                    Stock must be greater than 0.
+                </span>
+
+            </small>
+
+        </div>
+
+
+        <button type="button"
+            class="btn btn-primary mt-3"
+            (click)="updateStock()">
+            Update Stock
+        </button>
+
+    </form>
+</div>
